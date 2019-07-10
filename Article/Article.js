@@ -1,6 +1,17 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
+
+//structure of each element in array
+/*title
+  date
+  firstParagraph
+  secondParagraph
+  thirdParagraph
+  ,
+  */
+
 const data = [
+
   {
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
@@ -22,6 +33,7 @@ const data = [
         han. C-3po antilles moff qui-gon ahsoka aayla dooku amidala. Palpatine droid amidala droid k-3po twi'lek padmé wookiee. Leia
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
+
   {
     title: 'Javascript and You, ES6',
     date: 'May 7th, 2019',
@@ -97,14 +109,54 @@ const data = [
     {three separate paragraph elements}
 
     <span class='expandButton'></span>
-  </div>
 
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
+*/
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+function createArticle(articleObj){
+  //create elements
+  const outdiv = document.createElement('div');
+  const title = document.createElement('h2');
+  const datep = document.createElement('p');
+  const firstp = document.createElement('p');
+  const secp = document.createElement('p');
+  const thirdp = document.createElement('p');
+  const buttonOpen = document.createElement('span');
 
+
+  //setup structure - all in main div
+  outdiv.appendChild(title);
+  outdiv.appendChild(datep);
+  outdiv.appendChild(firstp);
+  outdiv.appendChild(secp);
+  outdiv.appendChild(thirdp);
+  outdiv.appendChild(buttonOpen);
+  
+
+  //add class names
+  outdiv.classList.add('article');
+  datep.classList.add('date');
+  buttonOpen.classList.add('expandButton');
+
+
+  /*
+    Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  */
+
+  buttonOpen.addEventListener('click', event =>{
+
+
+
+  })
+
+
+
+
+}
+
+/*
   Step 3: return the entire component.
 
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
