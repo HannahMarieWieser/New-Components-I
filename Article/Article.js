@@ -167,13 +167,13 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   //Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   buttonOpen.addEventListener('click', event =>{
-    console.log('button clicked')
+    //console.log('button clicked')
     outdiv.classList.toggle('article-open');
   })
 
 
   //  Step 3: return the entire component.
-  console.log(outdiv)
+ // console.log(outdiv)
   return outdiv;
   
 
@@ -185,7 +185,7 @@ const allArticles = document.querySelector('.articles')
 
 
 data.forEach(data =>{
-  console.log('creating-article', data.title)
+  //console.log('creating-article', data.title)
   allArticles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
  
 })
