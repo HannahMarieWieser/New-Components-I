@@ -1,6 +1,17 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
+
+//structure of each element in array
+/*title
+  date
+  firstParagraph
+  secondParagraph
+  thirdParagraph
+  ,
+  */
+
 const data = [
+
   {
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
@@ -22,6 +33,7 @@ const data = [
         han. C-3po antilles moff qui-gon ahsoka aayla dooku amidala. Palpatine droid amidala droid k-3po twi'lek padmé wookiee. Leia
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
+
   {
     title: 'Javascript and You, ES6',
     date: 'May 7th, 2019',
@@ -85,8 +97,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'New Age Hipster Development',
+    date: 'March 18, 2019',
+    firstParagraph: `Flannel franzen tbh celiac four dollar toast man bun subway tile sustainable drinking vinegar vegan. Chicharrones DIY post-ironic celiac cronut distillery. Single-origin coffee fingerstache mixtape pabst actually direct trade bushwick hexagon whatever snackwave ethical wolf four loko poke. Squid live-edge kinfolk selfies migas, drinking vinegar jianbing chillwave scenester hammock. `,
+
+    secondParagraph: `Knausgaard keffiyeh yr, drinking vinegar venmo brooklyn vape bespoke. Keffiyeh mixtape meditation live-edge bicycle rights. Truffaut franzen edison bulb, lumbersexual cred chia waistcoat. Succulents wayfarers polaroid brunch YOLO echo park vape master cleanse lyft snackwave authentic tbh. `,
+
+    thirdParagraph: `Activated charcoal kitsch prism distillery pop-up. Umami leggings ramps pop-up vinyl try-hard paleo thundercats stumptown pok pok messenger bag meditation listicle narwhal. Deep v slow-carb shoreditch lo-fi blog marfa butcher literally wolf. Affogato try-hard meggings kitsch quinoa, ennui literally hoodie fashion axe marfa dreamcatcher etsy godard la croix.`
   }
 ];
+
+
+
+
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
@@ -97,18 +122,72 @@ const data = [
     {three separate paragraph elements}
 
     <span class='expandButton'></span>
-  </div>
 
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
-
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
-  Step 3: return the entire component.
-
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
-
 */
+
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  //create elements
+  const outdiv = document.createElement('div');
+  const header = document.createElement('h2');
+  const datep = document.createElement('p');
+  const firstp = document.createElement('p');
+  const secp = document.createElement('p');
+  const thirdp = document.createElement('p');
+  const buttonOpen = document.createElement('span');
+
+
+  //setup structure - all in main div
+  outdiv.appendChild(header);
+  outdiv.appendChild(datep);
+  outdiv.appendChild(firstp);
+  outdiv.appendChild(secp);
+  outdiv.appendChild(thirdp);
+  outdiv.appendChild(buttonOpen);
+  
+
+  //add class names
+  outdiv.classList.add('article');
+  datep.classList.add('date');
+  buttonOpen.classList.add('expandButton');
+
+  //add content
+  buttonOpen.textContent = 'Open'
+  header.textContent = title;
+  datep.textContent = date;
+  firstp.textContent = firstParagraph;
+  secp.textContent = secondParagraph;
+  thirdp.textContent = thirdParagraph;
+
+
+
+  //Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+
+  buttonOpen.addEventListener('click', event =>{
+    //console.log('button clicked')
+    outdiv.classList.toggle('article-open');
+  })
+
+
+  //  Step 3: return the entire component.
+ // console.log(outdiv)
+  return outdiv;
+  
+
+}
+
+//  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+
+const allArticles = document.querySelector('.articles')
+
+
+data.forEach(data =>{
+  //console.log('creating-article', data.title)
+  allArticles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+ 
+})
+
+//  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
